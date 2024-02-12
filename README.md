@@ -1,2 +1,2 @@
 # Invisibility-Cloak-Proactive-Defense-Against-Visual-Game-Cheating
-TBD
+"Invisibility Cloak" introduces a pioneering proactive defense against FPS game cheating by adding imperceptible perturbations to game visuals, rendering them undetectable to visual aimbots. Tested on popular games like CrossFire and Counter-Strike 2, it effectively blocks cheating behaviors in real-time without compromising visual quality, significantly improving the gaming experience for legitimate players. Explore our project here.
