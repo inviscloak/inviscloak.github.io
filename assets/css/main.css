@@ -895,3 +895,23 @@ d-appendix a.footnote-backlink:hover {
     justify-content: center;
     align-items: center;
 }
+
+.publications.project-links {
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .btn.video-btn {
+    margin: 0 10px;
+    background-color: #B509AC;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .btn.video-btn:hover {
+    background-color: #9c0799;
+  }
+  

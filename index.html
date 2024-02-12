@@ -88,8 +88,23 @@
 
       <!---------------------------- Video ---------------------------->
 
+      <div class="publications project-links">
+        <button class="btn video-btn" data-video-url="https://youtu.be/Ws4gfAiY8JI">CS2 Training</button>
+        <button class="btn video-btn" data-video-url="https://youtu.be/j1pU6zMEGEg">CF</button>
+        <button class="btn video-btn" data-video-url="https://youtu.be/YTEv_DA_4_I">CS2</button>
+      </div>
+      
+      <div class="center-container">
+        <div class="card card-video" style="margin-top:20px">
+          <iframe id="videoFrame" width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/vfde9GdUHBs"
+            title="HumanMAC: Masked Motion Completion for Human Motion Prediction" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>      
 
-      <div class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 30px">
+
+      <!-- <div class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 30px">
         <div class="project-narrow" id="architecture" style="text-align: justify;">
           <h3 style="text-align: center;">Video</h3>
         </div>
@@ -102,7 +117,7 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
         </div>
-      </div>
+      </div> -->
       <!---------------------------- Method ---------------------------->
 
       <!-- <div class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 30px">
@@ -181,6 +196,19 @@
 
   <!-- JavaScripts -->
   <!-- jQuery -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var videoButtons = document.querySelectorAll('.video-btn');
+  
+      videoButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var videoUrl = btn.getAttribute('data-video-url');
+          document.getElementById('videoFrame').src = videoUrl;
+        });
+      });
+    });
+  </script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
