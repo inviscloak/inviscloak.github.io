@@ -915,3 +915,16 @@ d-appendix a.footnote-backlink:hover {
 .btn.video-btn:hover {
     background-color: #3c8cce;
 }
+
+.selected-button {
+    background-color: #2698BA;
+    color: #fff;
+    border-color: #2698BA;
+}
+
+/* .cloak-image {
+    max-width: 1200px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+} */

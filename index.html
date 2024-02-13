@@ -132,6 +132,42 @@
         </div>
       </div> -->
 
+      <!-- MAP Selection -->
+      <div class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 50px;">
+        <div class="project-narrow" style="text-align: justify;">
+          <h3 style="text-align: center; margin-bottom: 20px;">Cloak Showcase</h3>
+          
+          <!-- Button and Dropdown Container -->
+          <div class="button-dropdown-container" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
+            <!-- Game Selection Buttons -->
+            <div class="game-selection">
+              <button class="btn game-btn" data-game="CF">CF</button>
+              <button class="btn game-btn" data-game="CS2">CS2</button>
+            </div>
+            
+            <!-- Map Selection Dropdown -->
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" id="mapDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Map
+              </button>
+              <div class="dropdown-menu" aria-labelledby="mapDropdown">
+                <!-- Map options will be populated here based on game selection -->
+              </div>
+            </div>
+          </div>
+          
+          <!-- Image Display -->
+          <div class="image-display" style="display: flex; justify-content: center;">
+            <img id="cloakImage" src="" alt="Cloak Image" style="max-width: 1400px; display: block; margin: 0 auto;">
+        </div>        
+          
+          <p style="text-align: center; margin-top: 20px;">
+            The group of images shows part of the Cloaks generated for the selected game and map.
+          </p>
+        </div>
+      </div>
+
+
 
       <div style="margin-top:50px; padding: 0px !important">
         <h3 style="text-align: center; margin-bottom:20px">Demo
@@ -147,9 +183,9 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="list-tab" role="tablist">
                   <a class="dropdown-item dropdown-item-action" href="#run" id="h36m-dropdown" data-toggle="list"
-                    role="tab" aria-controls="run">run</a>
+                    role="tab" aria-controls="run">Run</a>
                   <a class="dropdown-item dropdown-item-action" href="#smoke" id="h36m-dropdown" data-toggle="list"
-                    role="tab" aria-controls="smoke">smoke</a>
+                    role="tab" aria-controls="smoke">Smoke</a>
                   <a class="dropdown-item dropdown-item-action" href="#halfbody" id="h36m-dropdown" data-toggle="list"
                     role="tab" aria-controls="halfbody">Cover</a>
                 </div>
@@ -158,15 +194,15 @@
             <div class="card" style="padding: 10px !important; margin-top:10px">
               <div class="tab-content figure" id="nav-tabContent">
                 <div class="tab-pane fade show active gif" id="run" role="tabpanel">
-                  <img class="gif" src="./assets/img/cs2/run.gif" style='width:100%'>
+                  <img class="gif" src="./assets/img/cs2_gif/run.gif" style='width:100%'>
                 </div>
                 <div class="tab-pane fade" id="smoke" role="tabpanel">
-                  <img class="gif lazy" src="./assets/img/cs2/smoke.gif"
-                    data-src="./assets/img/cs2/smoke.gif" style='width:100%'>
+                  <img class="gif lazy" src="./assets/img/cs2_gif/smoke.gif"
+                    data-src="./assets/img/cs2_gif/smoke.gif" style='width:100%'>
                 </div>
                 <div class="tab-pane fade" id="halfbody" role="tabpanel">
-                  <img class="gif lazy" src="./assets/img/cs2/half.gif"
-                    data-src="./assets/img/cs2/half.gif" style='width:100%'>
+                  <img class="gif lazy" src="./assets/img/cs2_gif/half.gif"
+                    data-src="./assets/img/cs2_gif/half.gif" style='width:100%'>
                 </div>
 
                 <p style="text-align: justify; margin: 10px;">
@@ -177,6 +213,7 @@
           </div>
         </div>
       </div>
+
 
  
     <!-- <div class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 30px">
@@ -285,6 +322,93 @@
       });
     });
   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var gameButtons = document.querySelectorAll('.game-selection .game-btn');
+      var mapDropdownButton = document.getElementById('mapDropdown');
+      var mapDropdownMenu = mapDropdownButton.nextElementSibling;
+
+      var gameMaps = {
+        'CF': ['Aquarium', 'Coconut Island', 'Pyramid', 'Transport Ship', 'Stable', 'Dust Grey', 'Training Ground'],
+        'CS2': ['Anubis', 'Inferno', 'Mirage', 'Nuke', 'Vertigo', 'Dust2', 'Repository']
+      };
+
+      var mapImages = {
+        'CF': {
+          'Aquarium': './assets/img/InvisCloak/cf_combine/cf_aquarium.jpg',
+          'Coconut Island': './assets/img/InvisCloak/cf_combine/cf_coconut_island.jpg',
+          'Pyramid': './assets/img/InvisCloak/cf_combine/cf_pyramid.jpg',
+          'Transport Ship': './assets/img/InvisCloak/cf_combine/cf_ship.jpg',
+          'Stable': './assets/img/InvisCloak/cf_combine/cf_stable.jpg',
+          'Dust Grey': './assets/img/InvisCloak/cf_combine/team_dust.jpg',
+          'Training Ground': './assets/img/InvisCloak/cf_combine/training_ground.jpg'
+        },
+        'CS2': {
+          'Anubis': './assets/img/InvisCloak/cs2_combine/deathmatch_Anubis.jpg',
+          'Inferno': './assets/img/InvisCloak/cs2_combine/deathmatch_Inferno.jpg',
+          'Mirage': './assets/img/InvisCloak/cs2_combine/deathmatch_Mirage.jpg',
+          'Nuke': './assets/img/InvisCloak/cs2_combine/deathmatch_Nuke.jpg',
+          'Vertigo': './assets/img/InvisCloak/cs2_combine/deathmatch_Vertigo.jpg',
+          'Dust2': './assets/img/InvisCloak/cs2_combine/dust2.jpg',
+          'Repository': './assets/img/InvisCloak/cs2_combine/Repository.jpg',
+        }
+      };
+    
+
+      gameButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          gameButtons.forEach(b => b.classList.remove('selected-button'));
+          btn.classList.add('selected-button');
+
+          var selectedGame = btn.getAttribute('data-game');
+          updateMapDropdown(selectedGame);
+        });
+      });
+
+      function updateMapDropdown(game) {
+        var maps = gameMaps[game];
+        mapDropdownMenu.innerHTML = '';
+        maps.forEach(function(map) {
+          var option = document.createElement('a');
+          option.classList.add('dropdown-item');
+          option.href = '#';
+          option.textContent = map;
+          option.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            mapDropdownButton.textContent = map;
+            cloakImage.src = mapImages[game][map];
+            cloakImage.style.display = 'block';
+          });
+          mapDropdownMenu.appendChild(option);
+        });
+      }
+
+      function setDefaultGameAndMap() {
+        var defaultGame = 'CF';
+        updateMapDropdown(defaultGame);
+        setDefaultMap();
+
+        var cfButton = document.querySelector('.game-selection .game-btn[data-game="CF"]');
+        if (cfButton) {
+          cfButton.classList.add('selected-button');
+        }
+      }
+
+      function setDefaultMap() {
+        var defaultGame = 'CF';
+        var defaultMap = 'Aquarium';
+        mapDropdownButton.textContent = "Map Selection";
+        cloakImage.src = mapImages[defaultGame][defaultMap];
+        cloakImage.style.display = 'block';
+      }
+
+      setDefaultGameAndMap();
+    });
+
+    
+  </script>
+  
 </body>
 
 </html>
