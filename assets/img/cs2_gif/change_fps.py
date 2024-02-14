@@ -9,8 +9,8 @@ def increase_gif_fps(input_gif_path, output_gif_path, new_fps):
         writer.append_data(frame)
     writer.close()
 
-input_gif_path = 'run.gif'
-output_gif_path = 'run_new.gif'
-new_fps = 20
+input_gif_path = 'half_new.gif'
+output_gif_path = 'half_new_1.gif'
+new_fps = 11
 
 increase_gif_fps(input_gif_path, output_gif_path, new_fps)
