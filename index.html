@@ -386,6 +386,79 @@
   </script>
 
   <script>
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   var gameButtons = document.querySelectorAll('.game-selection .game-btn');
+    //   var mapDropdownButton = document.getElementById('mapDropdown');
+    //   var mapDropdownMenu = mapDropdownButton.nextElementSibling;
+    //   var cloakImage = document.getElementById('cloakImage');
+
+    //   var gameMaps = {
+    //     'CF': ['Aquarium', 'Coconut Island', 'Pyramid', 'Transport Ship', 'Stable', 'Dust Grey', 'Training Ground'],
+    //     'CS2': ['Anubis', 'Inferno', 'Mirage', 'Nuke', 'Vertigo', 'Dust2', 'Repository']
+    //   };
+
+    //   var mapImages = {
+    //     'CF': {
+    //       'Aquarium': './assets/img/InvisCloak/cf_combine/cf_aquarium.jpg',
+    //       'Coconut Island': './assets/img/InvisCloak/cf_combine/cf_coconut_island.jpg',
+    //       'Pyramid': './assets/img/InvisCloak/cf_combine/cf_pyramid.jpg',
+    //       'Transport Ship': './assets/img/InvisCloak/cf_combine/cf_ship.jpg',
+    //       'Stable': './assets/img/InvisCloak/cf_combine/cf_stable.jpg',
+    //       'Dust Grey': './assets/img/InvisCloak/cf_combine/team_dust.jpg',
+    //       'Training Ground': './assets/img/InvisCloak/cf_combine/training_ground.jpg'
+    //     },
+    //     'CS2': {
+    //       'Anubis': './assets/img/InvisCloak/cs2_combine/deathmatch_Anubis.jpg',
+    //       'Inferno': './assets/img/InvisCloak/cs2_combine/deathmatch_Inferno.jpg',
+    //       'Mirage': './assets/img/InvisCloak/cs2_combine/deathmatch_Mirage.jpg',
+    //       'Nuke': './assets/img/InvisCloak/cs2_combine/deathmatch_Nuke.jpg',
+    //       'Vertigo': './assets/img/InvisCloak/cs2_combine/deathmatch_Vertigo.jpg',
+    //       'Dust2': './assets/img/InvisCloak/cs2_combine/dust2.jpg',
+    //       'Repository': './assets/img/InvisCloak/cs2_combine/Repository.jpg',
+    //     }
+    //   };
+
+    //   function updateMapDropdown(game) {
+    //     var maps = gameMaps[game];
+    //     mapDropdownMenu.innerHTML = '';
+    //     maps.forEach(function(mapName) {
+    //       var option = document.createElement('a');
+    //       option.classList.add('dropdown-item');
+    //       option.href = '#';
+    //       option.textContent = mapName;
+    //       option.dataset.imgSrc = mapImages[game][mapName];
+    //       option.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //         mapDropdownButton.textContent = mapName;
+    //         cloakImage.src = mapImages[game][mapName];
+    //       });
+    //       mapDropdownMenu.appendChild(option);
+    //     });
+    //     mapDropdownButton.textContent = "Select a Map";
+    //   }
+
+    //   gameButtons.forEach(function(btn) {
+    //     btn.addEventListener('click', function() {
+    //       gameButtons.forEach(b => b.classList.remove('selected-button'));
+    //       btn.classList.add('selected-button');
+    //       var selectedGame = btn.getAttribute('data-game');
+    //       updateMapDropdown(selectedGame);
+    //       var defaultMapName = gameMaps[selectedGame][0];
+    //       cloakImage.src = mapImages[selectedGame][defaultMapName];
+    //     });
+    //   });
+
+    //   function setDefaultGameAndMap() {
+    //     var defaultGame = 'CF';
+    //     var defaultGameButton = document.querySelector('.game-selection .game-btn[data-game="' + defaultGame + '"]');
+    //     if (defaultGameButton) {
+    //       defaultGameButton.click();
+    //     }
+    //     mapDropdownButton.textContent = "Select a Map";
+    //   }
+
+    //   setDefaultGameAndMap();
+    // });
     document.addEventListener('DOMContentLoaded', function() {
       var gameButtons = document.querySelectorAll('.game-selection .game-btn');
       var mapDropdownButton = document.getElementById('mapDropdown');
@@ -430,7 +503,7 @@
           option.addEventListener('click', function(event) {
             event.preventDefault();
             mapDropdownButton.textContent = mapName;
-            cloakImage.src = mapImages[game][mapName];
+            lazyLoadImage(cloakImage, mapImages[game][mapName]);
           });
           mapDropdownMenu.appendChild(option);
         });
@@ -443,8 +516,7 @@
           btn.classList.add('selected-button');
           var selectedGame = btn.getAttribute('data-game');
           updateMapDropdown(selectedGame);
-          var defaultMapName = gameMaps[selectedGame][0];
-          cloakImage.src = mapImages[selectedGame][defaultMapName];
+          lazyLoadImage(cloakImage, mapImages[selectedGame][gameMaps[selectedGame][0]]);
         });
       });
 
@@ -454,11 +526,15 @@
         if (defaultGameButton) {
           defaultGameButton.click();
         }
-        mapDropdownButton.textContent = "Select a Map";
+      }
+
+      function lazyLoadImage(imgElement, imgUrl) {
+        imgElement.src = imgUrl;
       }
 
       setDefaultGameAndMap();
     });
+
     
   </script>
   
