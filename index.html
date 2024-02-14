@@ -166,7 +166,7 @@
 
 
       <div style="margin-top:50px; padding: 0px !important">
-        <h3 style="text-align: center; margin-bottom:20px">Comparison Demo
+        <h3 style="text-align: center; margin-bottom:20px">Comparison Demo for CS2
         </h3>
         <div class="tab-content figure" id="nav-tabContent" style="padding: 0px !important">
           <div class="tab-pane fade show active" id="h36m" role="tabpanel" aria-labelledby="h36m-list"
@@ -390,6 +390,7 @@
       var gameButtons = document.querySelectorAll('.game-selection .game-btn');
       var mapDropdownButton = document.getElementById('mapDropdown');
       var mapDropdownMenu = mapDropdownButton.nextElementSibling;
+      var cloakImage = document.getElementById('cloakImage');
 
       var gameMaps = {
         'CF': ['Aquarium', 'Coconut Island', 'Pyramid', 'Transport Ship', 'Stable', 'Dust Grey', 'Training Ground'],
@@ -416,57 +417,60 @@
           'Repository': './assets/img/InvisCloak/cs2_combine/Repository.jpg',
         }
       };
-    
-
-      gameButtons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          gameButtons.forEach(b => b.classList.remove('selected-button'));
-          btn.classList.add('selected-button');
-
-          var selectedGame = btn.getAttribute('data-game');
-          updateMapDropdown(selectedGame);
-        });
-      });
 
       function updateMapDropdown(game) {
         var maps = gameMaps[game];
         mapDropdownMenu.innerHTML = '';
-        maps.forEach(function(map) {
+        maps.forEach(function(mapName) {
           var option = document.createElement('a');
           option.classList.add('dropdown-item');
           option.href = '#';
-          option.textContent = map;
+          option.textContent = mapName;
+          option.dataset.imgSrc = mapImages[game][mapName];
           option.addEventListener('click', function(event) {
-            event.preventDefault(); 
-            mapDropdownButton.textContent = map;
-            cloakImage.src = mapImages[game][map];
-            cloakImage.style.display = 'block';
+            event.preventDefault();
+            mapDropdownButton.textContent = mapName;
+            cloakImage.src = '';
+            cloakImage.dataset.src = mapImages[game][mapName];
+            lazyLoadMapImage(cloakImage);
           });
           mapDropdownMenu.appendChild(option);
         });
       }
 
-      function setDefaultGameAndMap() {
-        var defaultGame = 'CF';
-        updateMapDropdown(defaultGame);
-        setDefaultMap();
-
-        var cfButton = document.querySelector('.game-selection .game-btn[data-game="CF"]');
-        if (cfButton) {
-          cfButton.classList.add('selected-button');
+      function lazyLoadMapImage(imgElement) {
+        var imgSrc = imgElement.dataset.src;
+        if (imgSrc) {
+          imgElement.src = imgSrc;
+          imgElement.style.display = 'block';
         }
       }
 
-      function setDefaultMap() {
+      gameButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          gameButtons.forEach(b => b.classList.remove('selected-button'));
+          btn.classList.add('selected-button');
+          var selectedGame = btn.getAttribute('data-game');
+          updateMapDropdown(selectedGame);
+        });
+      });
+
+      function setDefaultGameAndMap() {
         var defaultGame = 'CF';
-        var defaultMap = 'Aquarium';
-        mapDropdownButton.textContent = "Map Selection";
-        cloakImage.src = mapImages[defaultGame][defaultMap];
-        cloakImage.style.display = 'block';
+        updateMapDropdown(defaultGame);
+        var defaultGameButton = document.querySelector('.game-selection .game-btn[data-game="' + defaultGame + '"]');
+        if (defaultGameButton) {
+          defaultGameButton.classList.add('selected-button');
+        }
+        var defaultMapName = gameMaps[defaultGame][0];
+        mapDropdownButton.textContent = defaultMapName;
+        var defaultMapImgSrc = mapImages[defaultGame][defaultMapName];
+        cloakImage.src = defaultMapImgSrc;
       }
 
       setDefaultGameAndMap();
     });
+        
 
     
   </script>
