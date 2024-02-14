@@ -144,7 +144,7 @@
             <!-- Map Selection Dropdown -->
             <div class="dropdown">
               <button class="btn dropdown-toggle" type="button" id="mapDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Select Map
+                Map Selection
               </button>
               <div class="dropdown-menu" aria-labelledby="mapDropdown">
                 <!-- Map options will be populated here based on game selection -->
@@ -458,17 +458,21 @@
       function setDefaultGameAndMap() {
         var defaultGame = 'CF';
         updateMapDropdown(defaultGame);
+
         var defaultGameButton = document.querySelector('.game-selection .game-btn[data-game="' + defaultGame + '"]');
         if (defaultGameButton) {
           defaultGameButton.classList.add('selected-button');
         }
-        var defaultMapName = gameMaps[defaultGame][0];
-        mapDropdownButton.textContent = defaultMapName;
-        var defaultMapImgSrc = mapImages[defaultGame][defaultMapName];
+
+        mapDropdownButton.textContent = "Map Selection";
+
+        var defaultMap = gameMaps[defaultGame][0];
+        var defaultMapImgSrc = mapImages[defaultGame][defaultMap];
         cloakImage.src = defaultMapImgSrc;
       }
 
       setDefaultGameAndMap();
+
     });
         
 
