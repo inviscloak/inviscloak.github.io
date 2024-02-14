@@ -128,7 +128,7 @@
         </div>
       </div> -->
 
-      <!-- MAP Selection -->
+      <!-- Select a Map -->
       <div class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 50px;">
         <div class="project-narrow" style="text-align: justify;">
           <h3 style="text-align: center; margin-bottom: 20px;">Cloak Presentation</h3>
@@ -141,10 +141,10 @@
               <button class="btn game-btn" data-game="CS2">CS2</button>
             </div>
             
-            <!-- Map Selection Dropdown -->
+            <!-- Select a Map Dropdown -->
             <div class="dropdown">
-              <button class="btn dropdown-toggle" type="button" id="mapDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Map Selection
+              <button class="btn dropdown-toggle fixed-width-button" type="button" id="mapDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select a Map
               </button>
               <div class="dropdown-menu" aria-labelledby="mapDropdown">
                 <!-- Map options will be populated here based on game selection -->
@@ -175,7 +175,7 @@
               <div class="dropdown list-group">
                 <button class="btn dropdown-toggle" style="max-width:600px" type="button" id="h36m-btn"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="selection">Scenario Selection</span>
+                  <span class="selection">Select a Scenario</span>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="list-tab" role="tablist">
                   <a class="dropdown-item dropdown-item-action" href="#run" id="h36m-dropdown" data-toggle="list"
@@ -430,20 +430,11 @@
           option.addEventListener('click', function(event) {
             event.preventDefault();
             mapDropdownButton.textContent = mapName;
-            cloakImage.src = '';
-            cloakImage.dataset.src = mapImages[game][mapName];
-            lazyLoadMapImage(cloakImage);
+            cloakImage.src = mapImages[game][mapName];
           });
           mapDropdownMenu.appendChild(option);
         });
-      }
-
-      function lazyLoadMapImage(imgElement) {
-        var imgSrc = imgElement.dataset.src;
-        if (imgSrc) {
-          imgElement.src = imgSrc;
-          imgElement.style.display = 'block';
-        }
+        mapDropdownButton.textContent = "Select a Map";
       }
 
       gameButtons.forEach(function(btn) {
@@ -452,30 +443,22 @@
           btn.classList.add('selected-button');
           var selectedGame = btn.getAttribute('data-game');
           updateMapDropdown(selectedGame);
+          var defaultMapName = gameMaps[selectedGame][0];
+          cloakImage.src = mapImages[selectedGame][defaultMapName];
         });
       });
 
       function setDefaultGameAndMap() {
         var defaultGame = 'CF';
-        updateMapDropdown(defaultGame);
-
         var defaultGameButton = document.querySelector('.game-selection .game-btn[data-game="' + defaultGame + '"]');
         if (defaultGameButton) {
-          defaultGameButton.classList.add('selected-button');
+          defaultGameButton.click();
         }
-
-        mapDropdownButton.textContent = "Map Selection";
-
-        var defaultMap = gameMaps[defaultGame][0];
-        var defaultMapImgSrc = mapImages[defaultGame][defaultMap];
-        cloakImage.src = defaultMapImgSrc;
+        mapDropdownButton.textContent = "Select a Map";
       }
 
       setDefaultGameAndMap();
-
     });
-        
-
     
   </script>
   

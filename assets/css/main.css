@@ -921,3 +921,11 @@ d-appendix a.footnote-backlink:hover {
     color: #fff;
     border-color: #2698BA;
 }
+
+.fixed-width-button {
+    width: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
