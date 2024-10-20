@@ -14,8 +14,8 @@ We open-source our dataset in the paper! Please download from the dataset here:[
 │   └── <Scenarios> # For CS2 dataset.
 │       └── <Actions Index>
 │           └── <Frames> # **.png
-└── dataloader.py # for PyTorch data loader
-
+├── dataloader.py # for PyTorch data loader
+└── stat.csv # Statistics of the dataset
 ## Citation
 
 If you find this benchmark helpful for your research, please cite our paper:
