@@ -16,9 +16,9 @@ We open-source our dataset in the paper! Please download from the dataset here:[
 │           └── <Frames> # **.png
 ├── dataloader.py # for PyTorch data loader
 └── stat.csv # Statistics of the dataset
+```
 
 ## Citation
-
 If you find this benchmark helpful for your research, please cite our paper:
 ```bib
 @inproceedings{sun2024invisibility,
